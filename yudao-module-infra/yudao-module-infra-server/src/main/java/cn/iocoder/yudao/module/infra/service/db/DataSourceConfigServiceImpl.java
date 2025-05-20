@@ -5,6 +5,7 @@ import cn.iocoder.yudao.framework.mybatis.core.util.JdbcUtils;
 import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
 import cn.iocoder.yudao.module.infra.dal.dataobject.db.DataSourceConfigDO;
 import cn.iocoder.yudao.module.infra.dal.mysql.db.DataSourceConfigMapper;
+import cn.iocoder.yudao.module.infra.enums.config.DatabaseTypeEnum;
 import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,25 @@ public class DataSourceConfigServiceImpl implements DataSourceConfigService {
 
     @Resource
     private DynamicDataSourceProperties dynamicDataSourceProperties;
+
+    private DatabaseTypeEnum parseDatabaseType(String url) {
+        switch (JdbcUtils.getDbType(url)) {
+            case ORACLE:
+                return DatabaseTypeEnum.ORACLE;
+            case SQL_SERVER:
+            case SQL_SERVER2005:
+                return DatabaseTypeEnum.SQLSERVER;
+            case POSTGRE_SQL:
+                return DatabaseTypeEnum.POSTGRESQL;
+            case DM:
+                return DatabaseTypeEnum.DM;
+            case KINGBASE_ES:
+                return DatabaseTypeEnum.KINGBASE;
+            case MYSQL:
+            default:
+                return DatabaseTypeEnum.MYSQL;
+        }
+    }
 
     @Override
     public Long createDataSourceConfig(DataSourceConfigSaveReqVO createReqVO) {
@@ -100,7 +120,8 @@ public class DataSourceConfigServiceImpl implements DataSourceConfigService {
         return new DataSourceConfigDO().setId(DataSourceConfigDO.ID_MASTER).setName(primary)
                 .setUrl(dataSourceProperty.getUrl())
                 .setUsername(dataSourceProperty.getUsername())
-                .setPassword(dataSourceProperty.getPassword());
+                .setPassword(dataSourceProperty.getPassword())
+                .setType(parseDatabaseType(dataSourceProperty.getUrl()));
     }
 
 }

@@ -9,6 +9,7 @@ import cn.iocoder.yudao.framework.test.core.ut.BaseDbUnitTest;
 import cn.iocoder.yudao.module.infra.controller.admin.db.vo.DataSourceConfigSaveReqVO;
 import cn.iocoder.yudao.module.infra.dal.dataobject.db.DataSourceConfigDO;
 import cn.iocoder.yudao.module.infra.dal.mysql.db.DataSourceConfigMapper;
+import cn.iocoder.yudao.module.infra.enums.config.DatabaseTypeEnum;
 import com.baomidou.dynamic.datasource.creator.DataSourceProperty;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceProperties;
 import org.junit.jupiter.api.BeforeEach;
@@ -168,6 +169,7 @@ public class DataSourceConfigServiceImplTest extends BaseDbUnitTest {
         assertEquals("http://localhost:3306", dataSourceConfig.getUrl());
         assertEquals("yunai", dataSourceConfig.getUsername());
         assertEquals("tudou", dataSourceConfig.getPassword());
+        assertEquals(DatabaseTypeEnum.MYSQL, dataSourceConfig.getType());
     }
 
     @Test
@@ -201,6 +203,7 @@ public class DataSourceConfigServiceImplTest extends BaseDbUnitTest {
         assertEquals("http://localhost:3306", dataSourceConfigList.get(0).getUrl());
         assertEquals("yunai", dataSourceConfigList.get(0).getUsername());
         assertEquals("tudou", dataSourceConfigList.get(0).getPassword());
+        assertEquals(DatabaseTypeEnum.MYSQL, dataSourceConfigList.get(0).getType());
         // normal
         assertPojoEquals(dbDataSourceConfig, dataSourceConfigList.get(1));
     }

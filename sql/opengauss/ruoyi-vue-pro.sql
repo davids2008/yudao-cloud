@@ -386,6 +386,7 @@ CREATE TABLE infra_data_source_config
     url         varchar(1024) NOT NULL,
     username    varchar(255)  NOT NULL,
     password    varchar(255)  NULL     DEFAULT '',
+    type        varchar(50)   NOT NULL,
     creator     varchar(64)   NULL     DEFAULT '',
     create_time timestamp     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updater     varchar(64)   NULL     DEFAULT '',
