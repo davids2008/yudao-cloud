@@ -1082,6 +1082,7 @@ CREATE TABLE infra_data_source_config
     url         nvarchar(1024)                          NOT NULL,
     username    nvarchar(255)                           NOT NULL,
     password    nvarchar(255) DEFAULT ''                NOT NULL,
+    type        nvarchar(50)                            NOT NULL,
     creator     nvarchar(64)  DEFAULT ''                NULL,
     create_time datetime2     DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater     nvarchar(64)  DEFAULT ''                NULL,
@@ -1123,6 +1124,13 @@ EXEC sp_addextendedproperty
      'SCHEMA', N'dbo',
      'TABLE', N'infra_data_source_config',
      'COLUMN', N'password'
+GO
+
+EXEC sp_addextendedproperty
+     'MS_Description', N'数据库类型',
+     'SCHEMA', N'dbo',
+     'TABLE', N'infra_data_source_config',
+     'COLUMN', N'type'
 GO
 
 EXEC sp_addextendedproperty

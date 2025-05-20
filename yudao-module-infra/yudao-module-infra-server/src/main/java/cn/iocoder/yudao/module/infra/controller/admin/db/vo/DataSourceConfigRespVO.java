@@ -2,6 +2,7 @@ package cn.iocoder.yudao.module.infra.controller.admin.db.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import cn.iocoder.yudao.module.infra.enums.config.DatabaseTypeEnum;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +21,9 @@ public class DataSourceConfigRespVO {
 
     @Schema(description = "用户名", requiredMode = Schema.RequiredMode.REQUIRED, example = "root")
     private String username;
+
+    @Schema(description = "数据库类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "mysql")
+    private DatabaseTypeEnum type;
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     private LocalDateTime createTime;

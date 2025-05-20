@@ -302,6 +302,7 @@ CREATE TABLE infra_data_source_config (
     url varchar(1024)  NOT NULL,
     username varchar(255)  NOT NULL,
     password varchar(255) DEFAULT '' NULL,
+    type varchar(50) NOT NULL,
     creator varchar(64) DEFAULT '' NULL,
     create_time datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updater varchar(64) DEFAULT '' NULL,
@@ -314,6 +315,7 @@ COMMENT ON COLUMN infra_data_source_config.name IS '参数名称';
 COMMENT ON COLUMN infra_data_source_config.url IS '数据源连接';
 COMMENT ON COLUMN infra_data_source_config.username IS '用户名';
 COMMENT ON COLUMN infra_data_source_config.password IS '密码';
+COMMENT ON COLUMN infra_data_source_config.type IS '数据库类型';
 COMMENT ON COLUMN infra_data_source_config.creator IS '创建者';
 COMMENT ON COLUMN infra_data_source_config.create_time IS '创建时间';
 COMMENT ON COLUMN infra_data_source_config.updater IS '更新者';
