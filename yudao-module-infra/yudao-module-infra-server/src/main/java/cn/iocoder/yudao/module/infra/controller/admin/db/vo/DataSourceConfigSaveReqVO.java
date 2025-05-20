@@ -2,6 +2,7 @@ package cn.iocoder.yudao.module.infra.controller.admin.db.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import cn.iocoder.yudao.module.infra.enums.config.DatabaseTypeEnum;
 
 import javax.validation.constraints.NotNull;
 
@@ -27,5 +28,9 @@ public class DataSourceConfigSaveReqVO {
     @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED, example = "123456")
     @NotNull(message = "密码不能为空")
     private String password;
+
+    @Schema(description = "数据库类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "mysql")
+    @NotNull(message = "数据库类型不能为空")
+    private DatabaseTypeEnum type;
 
 }

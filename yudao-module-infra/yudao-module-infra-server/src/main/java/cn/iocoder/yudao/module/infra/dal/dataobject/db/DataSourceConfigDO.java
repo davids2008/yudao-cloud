@@ -3,6 +3,7 @@ package cn.iocoder.yudao.module.infra.dal.dataobject.db;
 import cn.iocoder.yudao.framework.mybatis.core.dataobject.BaseDO;
 import cn.iocoder.yudao.framework.mybatis.core.type.EncryptTypeHandler;
 import cn.iocoder.yudao.framework.tenant.core.aop.TenantIgnore;
+import cn.iocoder.yudao.module.infra.enums.config.DatabaseTypeEnum;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -46,5 +47,10 @@ public class DataSourceConfigDO extends BaseDO {
      */
     @TableField(typeHandler = EncryptTypeHandler.class)
     private String password;
+
+    /**
+     * 数据库类型
+     */
+    private DatabaseTypeEnum type;
 
 }
